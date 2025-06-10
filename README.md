@@ -32,60 +32,41 @@
 - В качестве сборщика был использован - <code>Gradle</code>.
 - Использованы фреймворки <code>JUnit 5</code> и [Selenide](https://selenide.org/).
 - Для удаленного запуска реализована джоба в <code>Jenkins</code> с формированием Allure-отчета и отправкой результатов в <code>Telegram</code> при помощи бота.
-- Осуществлена интеграция с <code>Allure TestOps</code> и <code>Jira</code>
 
 Содержание Allure-отчета:
 * Шаги теста;
-* Page Source;
-* Логи браузерной консоли;
-
 
 ### Примеры автоматизированных кейсов
 
-- [x] Поиск по артикулу на главной странице
-- [x] Поиск по тексту на главной странице
-- [x] Поиск по VIN незарегистрированным/неавторизованным пользователем на главной странице
-- [x] Поиск по бренду производителя в каталоге
-- [x] Поиск по бренду автомобиля незарегистрированным/неавторизованным пользователем в каталоге
-- [x] Поиск по гос. номеру автомобиля незарегистрированным/неавторизованным пользователем на главной странице
-- [x] Добавление товара в корзину незарегистрированным/неавторизованным пользователем
-- [x] Удаление товара из корзины незарегистрированным/неавторизованным пользователем
+- [x] Проверка успешной регистрации нового пользователя
+- [x] Проверка регистрации существующего пользователя
+- [x] Проверка регистрации пользователя c простым паролем
+- [x] Проверка авторизации пользователя
+- [x] Проверка авторизации незарегистрированного пользователя
+- [x] Проверка удаления существующего пользователя
 
 ## :arrow_forward: Запуск автотестов
 
 ### Запуск тестов из терминала
 ```
-gradle clean avtopasker_test
+gradle clean demoqa_api_test
 ```
 При выполнении команды, данные тесты запустятся удаленно в <code>Selenoid</code>.
 
 ### Запуск тестов на удаленном браузере
 ```
-gradle clean avtopasker_test -DremoteHost="selenoid.autotests.cloud" -DbrowserSize="1920х1080" -Dbrowser="chrome" -DbrowserVersion="128.0"
+gradle clean demoqa_api_test -DremoteHost=${REMOTE}"
 ```
-При необходимости также можно переопределить параметры запуска
-
-```
-clean
--DremoteHost=${REMOTE}
--DbrowserSize=${BROWSER_SIZE}
--Dbrowser=${BROWSER}
--DbrowserVersion=${BROWSER_VERSION}"
-```
-
 ### Параметры сборки
 
-* <code>BROWSER</code> – браузер, в котором будут выполняться тесты. По-умолчанию - <code>chrome</code>.
-* <code>BROWSER_VERSION</code> – версия браузера, в которой будут выполняться тесты. По-умолчанию - <code>128.0</code>.
-* <code>BROWSER_SIZE</code> – размер окна браузера, в котором будут выполняться тесты. По-умолчанию - <code>1920x1080</code>.
 * <code>REMOTE</code> – адрес удаленного сервера, на котором будут запускаться тесты.
 
-## <img src="media/logo/Jenkins.svg" title="Jenkins" width="4%"/> [Сборка в Jenkins](https://jenkins.autotests.cloud/job/QuickProjectAvtopasker)
+## <img src="media/logo/Jenkins.svg" title="Jenkins" width="4%"/> [Сборка в Jenkins](https://jenkins.autotests.cloud/job/APIBookStoreDemoQA/)
 <p align="center">
 <img title="Jenkins Build" src="media/screens/JenkinsBuild.png">
 </p>
 
-## <img src="media/logo/Allure_Report.svg" title="Allure Report" width="4%"/> [Пример Allure-отчета](https://jenkins.autotests.cloud/job/QuickProjectAvtopasker/5/allure/#)
+## <img src="media/logo/Allure_Report.svg" title="Allure Report" width="4%"/> [Пример Allure-отчета](https://jenkins.autotests.cloud/job/APIBookStoreDemoQA/15/allure/#)
 ### Overview
 
 <p align="center">
@@ -98,24 +79,6 @@ clean
 <img title="Test Results in Alure" src="media/screens/ResultTest.png">
 </p>
 
-## <img src="media/logo/AllureTestOps.svg" title="Allure TestOps" width="4%"/> [Интеграция с Allure TestOps](https://allure.autotests.cloud/project/4696/test-cases?treeId=0)
-
-Выполнена интеграция сборки <code>Jenkins</code> с <code>Allure TestOps</code>.
-Результат выполнения автотестов отображается в <code>Allure TestOps</code>
-На Dashboard в <code>Allure TestOps</code> отображена статистика пройденных тестов.
-
-<p align="center">
-<img title="Allure TestOps DashBoard" src="media/screens/allureAutotestCloud.png">
-</p>
-
-## <img src="media/logo/Jira.svg" title="Jira" width="4%"/> [Интеграция с Jira](https://jira.autotests.cloud/browse/HOMEWORK-1431)
-
-Реализована интеграция <code>Allure TestOps</code> с <code>Jira</code>, в тикете отображается информация, какие тест-кейсы были написаны в рамках задачи и результат их прогона.
-
-<p align="center">
-<img title="Jira Task" src="media/screens/jiraTask.png">
-</p>
-
 ## <img width="4%" style="vertical-align:middle" title="Telegram" src="media/logo/Telegram.svg"> Уведомления в Telegram с использованием бота
 
 После завершения сборки, бот созданный в <code>Telegram</code>, автоматически обрабатывает и отправляет сообщение с результатом.
@@ -124,9 +87,3 @@ clean
 <img width="70%" title="Telegram Notifications" src="media/screens/notification.png">
 </p>
 
-## Видео примера запуска тестов в Selenoid
-
-К каждому тесту в отчете прилагается видео прогона.
-<p align="center">
-  <img title="Selenoid Video" src="media/screens/video.gif">
-</p>
