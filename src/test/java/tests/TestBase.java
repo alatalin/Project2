@@ -21,10 +21,11 @@ public class TestBase {
     @BeforeAll
     static void beforeAll() {
         Configuration.baseUrl = BASE_URL;
-        Configuration.browser = "chrome";
-        Configuration.browserSize = "1920x1080";
+        Configuration.browser = System.getProperty("browser");
+        Configuration.browserVersion = System.getProperty("browserVersion", "128");
+        Configuration.browserSize = System.getProperty("browserSize");
         Configuration.pageLoadStrategy = "eager";
-        Configuration.remote = System.getProperty("remoteUrl");
+        Configuration.remote = "https://user1:1234@" + System.getProperty("remoteHost") + "/wd/hub";
 
         RestAssured.baseURI = BASE_URL;
 
