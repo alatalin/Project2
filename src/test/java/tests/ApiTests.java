@@ -1,6 +1,7 @@
 package tests;
 
 
+import io.qameta.allure.Owner;
 import models.*;
 
 import models.response.GenerateTokenResponseModel;
@@ -23,6 +24,7 @@ import static specs.Endpoints.*;
 import static utils.TestData.*;
 
 @Tag("api")
+@Owner("alatalin")
 public class ApiTests extends TestBase {
 
     TestData testData = new TestData();
