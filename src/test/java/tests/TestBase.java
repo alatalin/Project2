@@ -42,18 +42,4 @@ public class TestBase {
         SelenideLogger.addListener("AllureSelenide", new AllureSelenide());
     }
 
-    @AfterEach
-    void addAttachments() {
-        Attach.screenshotAs("Last screenshot");
-        Attach.pageSource();
-        Attach.browserConsoleLogs();
-        Attach.addVideo();
-    }
-
-    @AfterAll
-    static void clearAll() {
-        clearBrowserCookies();
-        clearBrowserLocalStorage();
-        closeWebDriver();
-    }
 }
