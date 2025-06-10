@@ -40,7 +40,7 @@ public class TestBase {
     @BeforeEach
     void beforeEach() {
         SelenideLogger.addListener("AllureSelenide", new AllureSelenide());
-        open();
+        open("/favicon.ico");
     }
 
     @AfterEach
