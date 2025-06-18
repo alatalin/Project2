@@ -13,21 +13,18 @@ import org.openqa.selenium.remote.DesiredCapabilities;
 
 import java.util.Map;
 
-import static com.codeborne.selenide.Selenide.*;
-import static specs.Endpoints.BASE_URL;
-
 public class TestBase {
 
     @BeforeAll
     static void beforeAll() {
-        Configuration.baseUrl = BASE_URL;
+        Configuration.baseUrl = "https://demoqa.com/";
         Configuration.browser = System.getProperty("browser","chrome");
         Configuration.browserVersion = System.getProperty("browserVersion", "128");
         Configuration.browserSize = System.getProperty("browserSize","1920x1080");
         Configuration.pageLoadStrategy = "eager";
-        Configuration.remote = "https://user1:1234@" + System.getProperty("remoteHost") + "/wd/hub";
+        Configuration.remote = System.getProperty("remoteUrl");
 
-        RestAssured.baseURI = BASE_URL;
+        RestAssured.baseURI = "https://demoqa.com/";
 
         DesiredCapabilities capabilities = new DesiredCapabilities();
         capabilities.setCapability("selenoid:options", Map.<String, Object>of(
