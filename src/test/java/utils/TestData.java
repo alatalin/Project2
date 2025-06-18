@@ -12,9 +12,7 @@ public class TestData {
     public String randomPassword = faker.internet().password(10,15);
 
     public static final String DEFAULT_USERNAME = System.getProperty("userName");
-    //"Mark6";
     public static final String DEFAULT_PASSWORD = System.getProperty("userPassword");
-    //"Password123!()";
     public static final String WRONG_PASSWORD = "Password";
 
 
