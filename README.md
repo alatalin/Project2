@@ -55,8 +55,17 @@ gradle clean demoqa_api_test
 
 ### Запуск тестов на удаленном браузере
 ```
-gradle clean demoqa_api_test -DremoteHost=${REMOTE}"
+gradle clean demoqa_api_test -DremoteHost="https://user1:1234@selenoid.autotests.cloud/wd/hub" -DuserName="Mark6" -DuserPassword="Password123!()"
 ```
+При необходимости также можно переопределить параметры запуска
+
+```
+clean
+-DremoteHost=https://${REMOTE_AUTH}@${SELENOID_HOST}/wd/hub
+-DuserName=${USER_NAME}"
+-DuserPassword=${USER_PASSWORD}
+```
+
 ### Параметры сборки
 
 * <code>REMOTE</code> – адрес удаленного сервера, на котором будут запускаться тесты.
